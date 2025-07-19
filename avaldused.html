@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://sais.ee/Applications -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<base href="/">--><base href=".">
+
+    <script type="text/javascript" async="" charset="utf-8" src="./Avaldused - SAIS_files/recaptcha__ru.js" crossorigin="anonymous" integrity="sha384-jTmQW0eh7khcUmU1gXEUQBd9OIHRai7kt9NQR5ImMpjJzXPa/VlxDLNFFMpqztL7"></script><script type="text/javascript" async="" defer="" src="./Avaldused - SAIS_files/piwik.js"></script><script src="./Avaldused - SAIS_files/jquery-3.6.0.js"></script>
+<script src="./Avaldused - SAIS_files/jquery.tablesorter.js"></script>
+<script src="./Avaldused - SAIS_files/chosen.jquery.js"></script>
+<script src="./Avaldused - SAIS_files/initialize_jQuery_plugins.js"></script>
+
+
+    <title>Avaldused - SAIS</title>
+    <!-- Matomo  -->
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//loendaja.eenet.ee/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '3']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <noscript><p><img src="//loendaja.eenet.ee/piwik.php?idsite=3&rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo  Code -->
+    <script src="./Avaldused - SAIS_files/cookieconsent.min.js"></script>
+    <script src="./Avaldused - SAIS_files/Universaalne.js"></script>
+
+
+    <script src="./Avaldused - SAIS_files/api.js"></script>
+
+    <script type="text/javascript">
+        var saisCurrentController = 'Applications';
+        var saisLangCookieKey = 'langId';
+
+
+
+
+                var saisMenu = {
+                    "ActiveMainController": "Home",
+                    "MenuItems": [
+                        {
+                            "Title": "Avaleht",
+                            "Controller": "Home",
+                            "MenuItems": []
+                        },
+                        {
+                            "Title": "Avaldused",
+                            "Controller": "Applications",
+                            "MenuItems": []
+                        },
+                        {
+                            "Title": "Katsed",
+                            "Controller": "CandidateAdmissionExams",
+                            "MenuItems": []
+                        },
+                        {
+                            "Title": "Teated <span class='badge'>10</span>",
+                            "Controller": "Messages",
+                            "MenuItems": []
+                        }
+                    ]
+                };
+
+
+        var saisControllerStack = [];
+
+        function getActiveMainController(items, currentItem) {
+            for (var i = 0; i < items.length; i++) {
+                saisControllerStack.push(items[i].Controller);
+                if (items[i].Controller == currentItem) {
+                    return saisControllerStack[0];
+                }
+                if (items[i].MenuItems.length > 0) {
+                    var activeMainController = getActiveMainController(items[i].MenuItems, currentItem);
+                    if (activeMainController) {
+                        return activeMainController;
+                    }
+                }
+                saisControllerStack.pop();
+            }
+            return false;
+        };
+
+        saisMenu.ActiveMainController = getActiveMainController(saisMenu.MenuItems, saisCurrentController);
+    </script>
+
+    <link href="./Avaldused - SAIS_files/jquery-editable-select.min.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/bootstrap.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/bootstrap-chosen.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/bootstrap.overrides.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/bootstrap-select.min.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/bootstrap-datepicker.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/Select.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/animations.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/font-awesome.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/MyIcons.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/CustomHelpers.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/saisicons.css" rel="stylesheet">
+<link href="./Avaldused - SAIS_files/spin.css" rel="stylesheet">
+
+    <link href="./Avaldused - SAIS_files/Site.less" rel="stylesheet">
+
+    <!--[if lt IE 9]><script src="/Scripts/respond.js"></script>
+<script src="/Scripts/html5shiv.js"></script>
+<script src="/Scripts/ie8-polyfills.js"></script>
+<![endif]-->
+    <script src="./Avaldused - SAIS_files/modernizr-2.8.3.js"></script>
+
+
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-default navbar-sais " role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="https://sais.ee/">
+                    <img src="./Avaldused - SAIS_files/sais_logo.png" alt="SAIS logo">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+<ul class="nav navbar-nav navbar-right">
+
+    <li id="langMenu" class="dropdown shadow">
+        <a class="dropdown-toggle" id="GlobalSelectLanguage" data-toggle="dropdown" aria-expanded="true" title="Vali keel">Eesti keel <span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="GlobalSelectLanguage" role="menu">
+            <li><a class="item" onclick="setLang(10)">Eesti keeles</a></li>
+            <li><a class="item" onclick="setLang(20)">In English</a></li>
+            <li><a class="item" onclick="setLang(30)">По-русски</a></li>
+        </ul>
+    </li>
+
+        <li class="shadow" style="font-weight: bold">
+            <a style="text-decoration: none;">Vasilina Vinogradova (60703070014)</a>
+        </li>
+        <li class="shadow">
+            <a style="text-decoration: none;">
+                Kandidaat
+            </a>
+        </li>
+        <li class="shadow">
+<form action="https://sais.ee/Account/Logout" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="blS1Zr9lvJVW-rZE4m3aXuTVUmUrfcn4TgypZ_TOgAIyNTXLbO9gvdgU9__TjtjLBD-eVO-XrZdyKd-_322ZQdStY9y-TmUneGTZ1vTFmN-7fh-5jtKpr0dbrVE2GCVIFgn-ppiRZRzymYC11IJZCA2">                <a id="logoutLink" onclick="document.getElementById(&#39;logoutForm&#39;).submit()" title="Logi välja">Logi välja</a>
+</form>        </li>
+
+</ul>
+        </div>
+    </div>
+</nav>
+
+<div class="bg-image"></div>
+
+<div class="mainmenu" id="mainMenu">
+  <div class="container">
+    <ul class="nav nav-pills" id="mainMenuItems">
+      <li data-controller="Home">
+        <a href="index.html">Avaleht</a>
+      </li>
+      <li data-controller="Applications" class="active">
+        <a>Avaldused</a>
+      </li>
+      <li data-controller="CandidateAdmissionExams">
+        <a href="sisseastumiseksamid.html">Katsed</a>
+      </li>
+      <li data-controller="Messages">
+        <a href="teated.html">Teated <span class="badge">7</span></a>
+      </li>
+    </ul>
+    <div class="menutree"></div>
+  </div>
+</div>
+
+<div class="body">
+
+
+    <div class="col-lg-pull-12">
+        <div id="SpinJsDiv"></div>
+    </div>
+
+
+
+<div class="container">
+    <div class="belly">
+        <div class="search-form-paging" style="padding-top: 13px; padding-bottom:7px;">
+            <a onclick="return false;" class="active">1</a>
+        </div>
+
+
+
+
+
+
+<div>
+    <div>
+        <h1>Vaata esitatud avaldusi ja lisa uusi.</h1>
+
+<a class="btn btn-sais" href="https://sais.ee/AdmissionSearch">Lisa avaldus</a>    </div>
+    <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Tallinna Ülikool</h2>
+                </div>
+
+
+
+
+<div class="">
+
+        <div class="col-md-5 form-horizontal form-compressed">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Konkurss</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static"><a class="green-text" style="text-transform: uppercase">
+                        <strong>
+                            </strong></a><strong><a href="https://sais.ee/AdmissionSearch/View/17758">Matemaatika, majandusmatemaatika ja andmeanalüüs BA, päevaõpe </a>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Staatus:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                        <span class="label label-info label-application-status-attention">
+                            Tagasi lükatud
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Avalduse nr.</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">TLÜ-MLMB/25.DT-104226</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Punktid</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+                        <a onclick="ShowPointsModal(&#39;828651&#39;)">
+                            <strong></strong>
+                            Hetke punktid -
+                            3,00
+                        </a>
+                        <span sais-tooltip="tooltip" style="display: none;"></span>
+                    </p>
+                    <img id="loader_828651" class="loader" src="./Avaldused - SAIS_files/loader.gif" style="width: 15px; height: 15px; display: none;">
+                    <!--Modal for points-->
+                    <div id="PointsModalContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-horizontal form-compressed">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppeaste</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">bakalaureuseõpe (511)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppevorm</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                            <span>päevane õpe</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Finantseering</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+tasuta                                <span class="glyphicon glyphicon-check" style="color: #0EB742"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+<form action="https://sais.ee/Applications/OverviewPreview/828651" method="get"><input id="enableEdit" name="enableEdit" type="hidden" value="False">                <input type="submit" class="btn btn-sm btn-sais btn-applications-list" value="Vaata">
+</form>
+
+            <a class="btn btn-sm btn-sais btn-applications-list" href="https://sais.ee/Applications/Rankings?applicationId=828651">Pingerida</a>
+
+
+        </div>
+    <div style="border-bottom: 1px solid #eee; margin-left: 14px; margin-right: 14px; margin-bottom: 10px;">
+        <br style="clear: both">
+        <br style="clear: both">
+    </div>
+</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Tartu Ülikool</h2>
+                </div>
+
+
+
+
+<div class="">
+
+        <div class="col-md-5 form-horizontal form-compressed">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Konkurss</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static"><a class="green-text" style="text-transform: uppercase">
+                        <strong>
+                            </strong></a><strong><a href="https://sais.ee/AdmissionSearch/View/16920">Informaatika (BSc)</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Staatus:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                        <span class="label label-info label-application-status-attention" style="background-color: #0EB742;">
+                            Tuleb õppima
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Avalduse nr.</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">TÜ-IN25-199809</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Punktid</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+                        <a onclick="ShowPointsModal(&#39;850327&#39;)">
+                            <strong></strong>
+                            Hetke punktid -
+                            91,00
+                        </a>
+                        <span sais-tooltip="tooltip" style="display: none;"></span>
+                    </p>
+                    <img id="loader_850327" class="loader" src="./Avaldused - SAIS_files/loader.gif" style="width: 15px; height: 15px; display: none;">
+                    <!--Modal for points-->
+                    <div id="PointsModalContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-horizontal form-compressed">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppeaste</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">bakalaureuseõpe (511)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppevorm</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                            <span>päevane õpe</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Finantseering</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+tasuta                                <span class="glyphicon glyphicon-check" style="color: #0EB742"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+<form action="https://sais.ee/Applications/OverviewPreview/850327" method="get"><input id="enableEdit" name="enableEdit" type="hidden" value="False">                <input type="submit" class="btn btn-sm btn-sais btn-applications-list" value="Vaata">
+</form>
+            <a class="btn btn-sm btn-sais btn-applications-list" href="https://sais.ee/Applications/Rankings?applicationId=850327">Pingerida</a>
+
+
+        </div>
+    <div style="border-bottom: 1px solid #eee; margin-left: 14px; margin-right: 14px; margin-bottom: 10px;">
+        <br style="clear: both">
+        <br style="clear: both">
+    </div>
+</div>
+
+
+<div class="">
+
+        <div class="col-md-5 form-horizontal form-compressed">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Konkurss</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static"><a class="green-text" style="text-transform: uppercase">
+                        <strong>
+                            </strong></a><strong><a href="https://sais.ee/AdmissionSearch/View/16761">Matemaatika (BSc)</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Staatus:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                        <span class="label label-info label-application-status-attention">
+                            Õppekohast loobunud
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Avalduse nr.</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">TÜ-MT25-190016</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Punktid</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+                        <a onclick="ShowPointsModal(&#39;812893&#39;)">
+                            <strong></strong>
+                            Hetke punktid -
+                            91,00
+                        </a>
+                        <span sais-tooltip="tooltip" style="display: none;"></span>
+                    </p>
+                    <img id="loader_812893" class="loader" src="./Avaldused - SAIS_files/loader.gif" style="width: 15px; height: 15px; display: none;">
+                    <!--Modal for points-->
+                    <div id="PointsModalContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-horizontal form-compressed">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppeaste</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">bakalaureuseõpe (511)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppevorm</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                            <span>päevane õpe</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Finantseering</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+tasuta                                <span class="glyphicon glyphicon-check" style="color: #0EB742"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+<form action="https://sais.ee/Applications/OverviewPreview/812893" method="get"><input id="enableEdit" name="enableEdit" type="hidden" value="False">                <input type="submit" class="btn btn-sm btn-sais btn-applications-list" value="Vaata">
+</form>
+            <a class="btn btn-sm btn-sais btn-applications-list" href="https://sais.ee/Applications/Rankings?applicationId=812893">Pingerida</a>
+
+
+        </div>
+    <div style="border-bottom: 1px solid #eee; margin-left: 14px; margin-right: 14px; margin-bottom: 10px;">
+        <br style="clear: both">
+        <br style="clear: both">
+    </div>
+</div>
+
+
+<div class="">
+
+        <div class="col-md-5 form-horizontal form-compressed">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Konkurss</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static"><a class="green-text" style="text-transform: uppercase">
+                        <strong>
+                            </strong></a><strong><a href="https://sais.ee/AdmissionSearch/View/16768">Matemaatiline statistika (BSc)</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Staatus:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                        <span class="label label-info label-application-status-unactive">
+                            Tühistatud
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Avalduse nr.</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">TÜ-MS25-189880</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Punktid</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+                        <a onclick="ShowPointsModal(&#39;812534&#39;)">
+                            <strong></strong>
+                            Hetke punktid -
+                            91,00
+                        </a>
+                        <span sais-tooltip="tooltip" style="display: none;"></span>
+                    </p>
+                    <img id="loader_812534" class="loader" src="./Avaldused - SAIS_files/loader.gif" style="width: 15px; height: 15px; display: none;">
+                    <!--Modal for points-->
+                    <div id="PointsModalContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-horizontal form-compressed">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppeaste</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">bakalaureuseõpe (511)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppevorm</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                            <span>päevane õpe</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Finantseering</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+tasuta                                <span class="glyphicon glyphicon-check" style="color: #0EB742"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+<form action="https://sais.ee/Applications/OverviewPreview/812534" method="get"><input id="enableEdit" name="enableEdit" type="hidden" value="False">                <input type="submit" class="btn btn-sm btn-sais btn-applications-list" value="Vaata">
+</form>
+
+            <a class="btn btn-sm btn-sais btn-applications-list" href="https://sais.ee/Applications/Rankings?applicationId=812534">Pingerida</a>
+
+
+        </div>
+    <div style="border-bottom: 1px solid #eee; margin-left: 14px; margin-right: 14px; margin-bottom: 10px;">
+        <br style="clear: both">
+        <br style="clear: both">
+    </div>
+</div>
+
+
+<div class="">
+
+        <div class="col-md-5 form-horizontal form-compressed">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Konkurss</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static"><a class="green-text" style="text-transform: uppercase">
+                        <strong>
+                            </strong></a><strong><a href="https://sais.ee/AdmissionSearch/View/16610">Majandusteadus (BA)</a>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Staatus:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                        <span class="label label-info label-application-status-unactive">
+                            Tühistatud
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Avalduse nr.</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">TÜ-MJ25-194300</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Punktid</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+                        <a onclick="ShowPointsModal(&#39;828609&#39;)">
+                            <strong></strong>
+                            Hetke punktid -
+                            91,00
+                        </a>
+                        <span sais-tooltip="tooltip" style="display: none;"></span>
+                    </p>
+                    <img id="loader_828609" class="loader" src="./Avaldused - SAIS_files/loader.gif" style="width: 15px; height: 15px; display: none;">
+                    <!--Modal for points-->
+                    <div id="PointsModalContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-horizontal form-compressed">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppeaste</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">bakalaureuseõpe (511)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Õppevorm</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+                            <span>päevane õpe</span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Finantseering</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">
+
+tasuta                                <span class="glyphicon glyphicon-check" style="color: #0EB742"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+<form action="https://sais.ee/Applications/OverviewPreview/828609" method="get"><input id="enableEdit" name="enableEdit" type="hidden" value="False">                <input type="submit" class="btn btn-sm btn-sais btn-applications-list" value="Vaata">
+</form>
+
+            <a class="btn btn-sm btn-sais btn-applications-list" href="https://sais.ee/Applications/Rankings?applicationId=828609">Pingerida</a>
+
+
+        </div>
+    <div style="border-bottom: 1px solid #eee; margin-left: 14px; margin-right: 14px; margin-bottom: 10px;">
+        <br style="clear: both">
+        <br style="clear: both">
+    </div>
+</div>
+            </div>
+    </div>
+
+<div class="modal fade" id="ChangeApplicationModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"> Tähelepanu!</h3>
+            </div>
+            <div class="modal-body">
+                Sinu avaldus viiakse tagasi "esitamata" staatusesse. Kui konkursil on sisseastumiseksam, siis avalduse esitamisel valitud/määratud eksamiaeg tühistatakse. Kandideerimiseks tuleb avaldus uuesti esitada ja katse aeg võib muutuda. Kas soovid jätkata?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sais" type="button" onclick="submitForm()">Jah </button>
+                <button class="btn btn-sais" type="button" data-dismiss="modal">Ei</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var changeAppButton = null;
+
+    function openChangeApplicationConfirmationModal(clickedChangeAppButton) {
+        changeAppButton = clickedChangeAppButton;
+        $("#ChangeApplicationModal").modal("show")
+    }
+
+    function submitForm() {
+        $(changeAppButton).closest('form').submit()
+    }
+
+</script>
+</div>
+
+
+        <div class="search-form-paging" style="padding-top: 13px; padding-bottom:7px;">
+            <a onclick="return false;" class="active">1</a>
+        </div>
+
+    </div>
+</div>
+<script>
+    function ClickPage(page, showDefault) {
+        location.href = '/Applications/?page=' + page;
+    }
+</script>
+
+
+</div>
+
+<footer>
+    <br>
+    <p class="remark">SAISi haldab <a href="https://hm.ee/" target="_blank">Haridus- ja Teadusministeerium</a></p>
+    <div class="remark">
+        <img class="supporter-logo" src="./Avaldused - SAIS_files/el_sotsiaalfond_horisontaalne.jpg" alt="el_sotsiaalfond">
+    </div>
+    <p class="remark">Version 85.42.1.0</p>
+    </footer>
+
+<script src="./Avaldused - SAIS_files/bootstrap.js"></script>
+<script src="./Avaldused - SAIS_files/bootstrap-datepicker.js"></script>
+<script src="./Avaldused - SAIS_files/bootstrap-select.min.js"></script>
+
+<script src="./Avaldused - SAIS_files/initializeTopPartialMenu.js"></script>
+
+<script src="./Avaldused - SAIS_files/helpers.js"></script>
+
+<script src="./Avaldused - SAIS_files/spin.umd.js"></script>
+<script src="./Avaldused - SAIS_files/jquery.blockUI.js"></script>
+<script src="./Avaldused - SAIS_files/ApplicationBusyController.js"></script>
+
+
+
+    <script src="./Avaldused - SAIS_files/triggerSaisTooltip.js"></script>
+
+    <script src="./Avaldused - SAIS_files/crudController.js"></script>
+
+
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Olete SAISist välja logitud!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Turvaliseks lahkumiseks SAISist sulgege palun kõik brauseri aknad.</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-sais">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="modal fade" id="sessionTimeoutModal" tabindex="-1" role="dialog" aria-labelledby="sessionTimeoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="sessionTimeoutModalLabel">Sessioon hakkab aeguma!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Teie sessioon aegub
+                        <span id="sessionTtlSpan" style="color:red;"></span>
+                        minuti pärast.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="logout()" class="btn btn-sais jsDisableButton">Logi välja</button>
+                    <button type="button" onclick="tryRefresh()" class="btn btn-sais jsDisableButton">Pikenda</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var originalDocumentTitle = document.title;
+
+        var sessionTtlInterval;
+
+        var modalDisplayDelay = 1012476; var sessionTtl = 120;
+
+        setTimeout(showSessionEndingModal, modalDisplayDelay);
+
+        function showSessionEndingModal() {
+            setSessionTtlMinutes(sessionTtl);
+
+            sessionTtlInterval = setInterval(sessionTtlIntervalFn, 1000);
+
+            $('#sessionTimeoutModal').modal('show');
+        }
+
+        function sessionTtlIntervalFn() {
+            if (sessionTtl < 1) {
+                clearInterval(sessionTtlInterval);
+
+                $('.jsDisableButton').prop('disabled', true);
+
+                setTimeout(function () {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                sessionTtl = sessionTtl - 1;
+                setSessionTtlMinutes(sessionTtl);
+            }
+        }
+
+        function setSessionTtlMinutes(totalSeconds) {
+            var minutes = ~~(totalSeconds / 60); // ~~ should be equivalent to Math.floor(). ~~ is two consecutive NOT bitwise operations.
+            var seconds = totalSeconds % 60;
+
+            var timeStr = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+            $('span#sessionTtlSpan').html(timeStr);
+
+            document.title = `${timeStr} -- ${originalDocumentTitle}`;
+        }
+
+        function tryRefresh() {
+            $.ajax({
+                type: 'POST',
+                url: 'Account/ProlongSession',
+                success: function (result, textstatus, jqxhr) {
+                    if (jqxhr.getResponseHeader('content-type').startsWith('text/html')) {
+                        window.location.href = '/Account/Login';
+                    } else if (!result.failed) {
+                        sessionTtl = result.sessionTtl;
+                        modalDisplayDelay = result.modalDisplayDelay;
+
+                        setTimeout(showSessionEndingModal, modalDisplayDelay);
+
+                        $('#sessionTimeoutModal').modal('hide');
+
+                        document.title = originalDocumentTitle;
+
+                        clearInterval(sessionTtlInterval);
+                    } else if (!result.retry) {
+                        window.location.href = '/Account/Login';
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            window.location.href = '/Account/Logout';
+        }
+    </script>
+
+
+
+<style>#cconsent-bar, #cconsent-bar * { box-sizing:border-box }#cconsent-bar { background-color:#f5f7f8; color:#575a65; padding:1.5rem 0 2rem 2rem; border: 1px solid #ccd9e0; box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.2); text-align:right; font-family:"Roboto", sans-serif; font-size:1.25rem; line-height:1.5; position:fixed; bottom:0; left:0; width:100%; z-index:9998; transform: translateY(0); transition: transform .6s ease-in-out; transition-delay: .3s;}#cconsent-bar.ccb--hidden {transform: translateY(100%); display:block;}#cconsent-bar .ccb__wrapper { display:flex; flex-wrap:wrap; justify-content:space-between; max-width:1800px; margin:0 auto;}#cconsent-bar .ccb__left { align-self:center; text-align:left; margin: 15px 0;}#cconsent-bar .ccb__right { align-self:center; white-space: nowrap;}#cconsent-bar .ccb__right > div {display:inline-block; color:#FFF;}#cconsent-bar a { color:#575a65; }#cconsent-bar button { display: inline-block; margin: 1rem; color:#FFF; background-color:#30316d; border-color:undefined; box-shadow 0 4px 4px rgba(0, 0, 0, 0.25); font-weight: 700; text-align: center; vertical-align: middle; border: 2px solid transparent; padding:0.375rem 1rem; font-size:1rem; line-height:1.5; border-radius: 1.25rem;}#cconsent-bar a.ccb__edit { line-height:1.5; font-weight: 700; font-size:1rem; border-color:#30316d; border: 2px solid transparent; border-radius: 1.25rem; padding:0.375rem 1rem; display: inline-block;  text-align: center; vertical-align: middle; margin: 1rem; color:#FFF; background-color:#30316d; }#cconsent-bar a:hover, #cconsent-bar button:hover { cursor:pointer; background-color: #2F5B9E;  }#cconsent-modal { display:none; font-size:14px; line-height:18px; color:#666; width: 100vw; height: 100vh; position:fixed; left:0; top:0; right:0; bottom:0; font-family:sans-serif; font-size:14px; background-color:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;}@media (max-width: 600px) { #cconsent-modal { height: 100% } }#cconsent-modal h2, #cconsent-modal h3 {color:#333}#cconsent-modal.ccm--visible {display:flex}#cconsent-modal .ccm__content { max-width:600px; min-height:500px; max-height:600px; overflow-Y:auto; background-color:#EFEFEF; }@media (max-width: 600px) { #cconsent-modal .ccm__content { max-width:100vw; height:100%; max-height:initial; }}#cconsent-modal .ccm__content > .ccm__content__heading { border-bottom:1px solid #D8D8D8; padding:35px 35px 20px; background-color:#EFEFEF; position:relative;}#cconsent-modal .ccm__content > .ccm__content__heading h2 { font-size:21px; font-weight:600; color:#333; margin:0 }#cconsent-modal .ccm__content > .ccm__content__heading .ccm__cheading__close {font-weight:600; color:#888; cursor:pointer; font-size:26px; position: absolute; right:15px; top: 15px;}#cconsent-modal h2, #cconsent-modal h3 {margin-top:0}#cconsent-modal .ccm__content > .ccm__content__body { background-color:#FFF;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup {margin:0; border-bottom: 1px solid #D8D8D8; }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup .ccm__tab-head::before { position:absolute; left:35px; font-size:1.4em; font-weight: 600; color:#E56385; content:"×"; display:inline-block; margin-right: 20px;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup.checked-5jhk .ccm__tab-head::before {font-size:1em; content:"✔"; color:#28A834}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup .ccm__tab-head .ccm__tab-head__icon-wedge { transition: transform .3s ease-out; transform-origin: 16px 6px 0; position:absolute;right:25px; top:50%; transform:rotate(0deg); transform:translateY(-50%)}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup .ccm__tab-head .ccm__tab-head__icon-wedge > svg { pointer-events: none; }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup.ccm__tabgroup--open .ccm__tab-head .ccm__tab-head__icon-wedge {transform:rotate(-180deg)}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-head {color:#333; padding:17px 35px 17px 56px; margin:0}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content {padding:25px 35px; margin:0}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-head { transition: background-color .5s ease-out }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-head:hover { background-color:#F9F9F9 }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-head {font-weight:600; cursor:pointer; position:relative;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup .ccm__tab-content {display:none;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup.ccm__tabgroup--open .ccm__tab-head { background-color:#F9F9F9 }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup.ccm__tabgroup--open .ccm__tab-content {display:flex;}@media (max-width: 600px) { #cconsent-modal .ccm__content > .ccm__content__body .ccm__tabgroup.ccm__tabgroup--open .ccm__tab-content {flex-direction:column} }@media (max-width: 600px) { #cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left { margin-bottom:20px; } }#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch-component {display:flex; margin-right:35px; align-items:center;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch-component > div {font-weight:600;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch-group {width:40px; height:20px; margin:0 10px; position:relative;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch {position: absolute; top:0; right:0; display: inline-block; width: 40px; height: 20px;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch input {display:none;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch .ccm__switch__slider  {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius:10px; -webkit-transition: .4s; transition: .4s;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch .ccm__switch__slider:before  {position: absolute; content: ""; height: 12px; width: 12px; left: 4px; bottom: 4px; background-color: white; border-radius:50%; -webkit-transition: .4s; transition: .4s;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch input:checked + .ccm__switch__slider  {background-color: #28A834;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch input:focus + .ccm__switch__slider  {box-shadow: 0 0 1px #28A834;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__tab-content__left .ccm__switch input:checked + .ccm__switch__slider:before  {-webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px);}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content h3 {font-size:18px; margin-bottom:10px; line-height:1;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content p {color:#444; margin-bottom:0}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__list:not(:empty) {margin-top:30px;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__list .ccm__list__title {color:#333; font-weight:600;}#cconsent-modal .ccm__content > .ccm__content__body .ccm__tab-content .ccm__list ul { margin:15px 0; padding-left:15px }#cconsent-modal .ccm__footer { padding:35px; background-color:#EFEFEF; text-align:center; display: flex; align-items:center; justify-content:flex-end; }#cconsent-modal .ccm__footer button { line-height:normal; font-size:14px; transition: background-color .5s ease-out; background-color: #30316d; color:#FFF; border:none; padding:13px; min-width:110px; border-radius: 2px; cursor:pointer; }#cconsent-modal .ccm__footer button:hover { background-color: #30316d; }#cconsent-modal .ccm__footer button#ccm__footer__consent-modal-submit {  margin-right:10px; }</style><div id="cconsent-bar" class="ccb--hidden"><div class="ccb__wrapper"><div class="ccb__left"><div class="cc-text">Harno teenused lisavad su arvutisse väikesed failid, mida nimetatakse küpsisteks, mis koguvad infot sinu haridusveebide kasutuse kohta ja aitavad tõsta kasutusmugavust.</div></div><div class="ccb__right"><div class="ccb__button"><a class="ccb__edit">Küpsiste sätted</a><button class="consent-give">Nõustu küpsisetega</button></div></div></div></div><div id="cconsent-modal"><div class="ccm__content"><div class="ccm__content__heading"><h2>Küpsiste sätted</h2><p>Kasutame küpsiseid info kogumise eesmärgil, et tagada mugavam ja sõbralikum kasutajakogemus ning sisu.</p><div class="ccm__cheading__close">×</div></div><div class="ccm__content__body"><div class="ccm__tabs"><dl class="ccm__tabgroup necessary checked-5jhk" data-category="necessary"><dt class="ccm__tab-head">Vajalikud küpsised<a class="ccm__tab-head__icon-wedge"><svg version="1.2" preserveAspectRatio="none" viewBox="0 0 24 24" class="[object SVGAnimatedString] icon-wedge-svg" data-id="e9b3c566e8c14cfea38af128759b91a3" style="opacity: 1; mix-blend-mode: normal; fill: rgb(51, 51, 51); width: 32px; height: 32px;"><path xmlns:default="http://www.w3.org/2000/svg" class="[object SVGAnimatedString] icon-wedge-angle-down" d="M17.2,9.84c0-0.09-0.04-0.18-0.1-0.24l-0.52-0.52c-0.13-0.13-0.33-0.14-0.47-0.01c0,0-0.01,0.01-0.01,0.01  l-4.1,4.1l-4.09-4.1C7.78,8.94,7.57,8.94,7.44,9.06c0,0-0.01,0.01-0.01,0.01L6.91,9.6c-0.13,0.13-0.14,0.33-0.01,0.47  c0,0,0.01,0.01,0.01,0.01l4.85,4.85c0.13,0.13,0.33,0.14,0.47,0.01c0,0,0.01-0.01,0.01-0.01l4.85-4.85c0.06-0.06,0.1-0.15,0.1-0.24  l0,0H17.2z" style="fill: rgb(51, 51, 51);"></path></svg></a></dt><dd class="ccm__tab-content"><div class="ccm__tab-content__left"></div><div class="right"><h3>Vajalikud küpsised</h3><p>Hädavajalikud küpsised tagavad teenuse õigesti töötamise. Siia kuuluvad näiteks sessiooniküpsised ning "cconsent" küpsis.</p><p>Kogu info Harnos kasutatavatest küpsistest asub cookie.edu.ee </p><div class="ccm__list"></div></div></dd></dl><dl class="ccm__tabgroup various checked-5jhk" data-category="various"><dt class="ccm__tab-head">Valikulised küpsised<a class="ccm__tab-head__icon-wedge"><svg version="1.2" preserveAspectRatio="none" viewBox="0 0 24 24" class="[object SVGAnimatedString] icon-wedge-svg" data-id="e9b3c566e8c14cfea38af128759b91a3" style="opacity: 1; mix-blend-mode: normal; fill: rgb(51, 51, 51); width: 32px; height: 32px;"><path xmlns:default="http://www.w3.org/2000/svg" class="[object SVGAnimatedString] icon-wedge-angle-down" d="M17.2,9.84c0-0.09-0.04-0.18-0.1-0.24l-0.52-0.52c-0.13-0.13-0.33-0.14-0.47-0.01c0,0-0.01,0.01-0.01,0.01  l-4.1,4.1l-4.09-4.1C7.78,8.94,7.57,8.94,7.44,9.06c0,0-0.01,0.01-0.01,0.01L6.91,9.6c-0.13,0.13-0.14,0.33-0.01,0.47  c0,0,0.01,0.01,0.01,0.01l4.85,4.85c0.13,0.13,0.33,0.14,0.47,0.01c0,0,0.01-0.01,0.01-0.01l4.85-4.85c0.06-0.06,0.1-0.15,0.1-0.24  l0,0H17.2z" style="fill: rgb(51, 51, 51);"></path></svg></a></dt><dd class="ccm__tab-content"><div class="ccm__tab-content__left"><div class="ccm__switch-component"><div class="status-off">Väljas</div><div class="ccm__switch-group"><label class="ccm__switch"><input class="category-onoff" type="checkbox" data-category="various"><span class="ccm__switch__slider"></span></label></div><div class="status-on">Sees</div></div></div><div class="right"><h3>Valikulised küpsised</h3><p>Harno teenused lisavad su arvutisse väikesed failid, mida nimetatakse küpsisteks, mis koguvad infot sinu haridusveebide kasutuse kohta ja aitavad tõsta kasutusmugavust. Loe lähemalt, milliseid küpsiseid me kasutame, milleks nad on mõeldud ning millal nad aeguvad. </p><p>Kogu info Harnos kasutatavatest küpsistest asub cookie.edu.ee </p><div class="ccm__list"></div></div></dd></dl></div></div><div class="ccm__footer"><button id="ccm__footer__consent-modal-submit">Salvesta valik</button><button class="consent-give">Nõustu küpsistega</button></div></div></div></body></html>
